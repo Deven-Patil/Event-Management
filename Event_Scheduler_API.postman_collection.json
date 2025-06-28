@@ -1,0 +1,488 @@
+{
+	"info": {
+		"_postman_id": "event-scheduler-api",
+		"name": "Event Scheduler API",
+		"description": "A comprehensive collection for testing the Event Scheduler System API endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/health",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Team Meeting\",\n    \"description\": \"Weekly team sync meeting\",\n    \"start_time\": \"2024-01-15T10:00:00\",\n    \"end_time\": \"2024-01-15T11:00:00\",\n    \"recurring\": \"weekly\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event - Invalid Data",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Invalid Event\",\n    \"description\": \"Event with end time before start time\",\n    \"start_time\": \"2024-01-15T11:00:00\",\n    \"end_time\": \"2024-01-15T10:00:00\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Event - Missing Fields",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Incomplete Event\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event by ID - Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/999",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Team Meeting\",\n    \"description\": \"Updated weekly team sync meeting\",\n    \"start_time\": \"2024-01-15T14:00:00\",\n    \"end_time\": \"2024-01-15T15:00:00\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event - Partial Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Only Title Updated\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event - Not Found",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Update Non-existent Event\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/api/events/999",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event - Not Found",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/999",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/search?q=meeting",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "meeting"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Events - No Query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/search",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Upcoming Events",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/upcoming?hours=2",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"upcoming"
+					],
+					"query": [
+						{
+							"key": "hours",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Upcoming Events - Default Hours",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/events/upcoming",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"events",
+						"upcoming"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sample Events Setup",
+			"item": [
+				{
+					"name": "Create Sample Event 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Python Development Meeting\",\n    \"description\": \"Discuss new Python features and development practices\",\n    \"start_time\": \"2024-01-15T09:00:00\",\n    \"end_time\": \"2024-01-15T10:30:00\",\n    \"recurring\": \"weekly\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sample Event 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Client Presentation\",\n    \"description\": \"Present project progress to client\",\n    \"start_time\": \"2024-01-16T14:00:00\",\n    \"end_time\": \"2024-01-16T15:30:00\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sample Event 3",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Daily Standup\",\n    \"description\": \"Daily team standup meeting\",\n    \"start_time\": \"2024-01-17T08:30:00\",\n    \"end_time\": \"2024-01-17T09:00:00\",\n    \"recurring\": \"daily\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/events",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+} 
